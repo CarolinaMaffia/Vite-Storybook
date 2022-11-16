@@ -1,31 +1,39 @@
 import PropTypes from 'prop-types';
+import './button.css';
 
-const Button = ({label, backgroundColor = "green", handleClick, size = 'md'}) => {
-    let buttonWidth = '150px';
-    if (size === 'sm') buttonWidth = '100px'
-    if (size === 'lg') buttonWidth = '200px'
-    const style = {
-        backgroundColor,
-        border: 'none',
-        padding: '10px',
-        borderRadius: '10px',
-        width: buttonWidth,
-        color: '#ffffff'
-    }
-
+const Button = ({ primary, backgroundColor, label, size, isDisabled, handleClick, ...props}) => {
+    const mode = primary ? 'storybook-btn--primary' : 'storybook-btn--secondary';
+    const disabled = isDisabled ? 'disabled' : '';
   return (
-    <button 
-        style={style}
-        onClick={handleClick}    
-    >{label}</button>
+    <button
+        type="button"
+        className={['storybook-btn', `storybook-btn--${size}`, disabled, mode].join(' ')}
+        style={backgroundColor && { backgroundColor }}
+        disabled={isDisabled}
+        onClick={handleClick}
+        {...props}
+    >
+        {label}
+    </button>
   )
 }
 
 Button.propTypes = {
+    primary: PropTypes.bool,
     label: PropTypes.string,
     backgroundColor: PropTypes.string,
     size: PropTypes.oneOf(['sm', 'md', 'lg']),
     handleClick: PropTypes.func,
+    isDisabled: PropTypes.bool,
 }
 
-export default Button
+Button.defaultProps = {
+    backgroundColor: null,
+    primary: false,
+    size: 'md',
+    onClick: undefined,
+    isDisabled: false,
+}
+
+
+export default Button;

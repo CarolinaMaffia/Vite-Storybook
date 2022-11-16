@@ -3,22 +3,34 @@ import Button from '../components/Button/Button.jsx';
 export default {
     title: 'Button',
     component: Button,
-    argTypes: { handleClick: { action: 'handleClick'} }
+    argTypes: { 
+        handleClick: { action: 'handleClick'},
+        backgroundColor: { control: 'color' },
+    }
 }
 const Template = args => <Button {...args} />
 
 export const Primary = Template.bind({})
 
 Primary.args = {
-    backgroundColor: '#9b3636',
-    label: 'Primary',
-    size: 'md'
+    primary: true,
+    label: 'Primary'
 }
 
 export const Secondary = Template.bind({})
 
 Secondary.args = {
-    backgroundColor: 'black',
     label: 'Secondary',
-    size: 'lg'
 }
+
+export const Lg = Template.bind({});
+Lg.args = {
+  size: 'lg',
+  label: 'Large',
+};
+
+export const Sm = Template.bind({});
+Sm.args = {
+  size: 'sm',
+  label: 'Small',
+};
