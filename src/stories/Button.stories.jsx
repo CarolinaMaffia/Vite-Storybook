@@ -5,7 +5,6 @@ export default {
     component: Button,
     argTypes: { 
         handleClick: { action: 'handleClick'},
-        backgroundColor: { control: 'color' },
     }
 }
 const Template = args => <Button {...args} />
